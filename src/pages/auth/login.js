@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 
@@ -13,10 +13,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState(null);
 
-    const formData = {
-        email,
-        password,
-    };
+    const formData = { email, password };
 
     const url = 'http://localhost:4000';
 

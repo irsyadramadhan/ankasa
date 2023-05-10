@@ -27,7 +27,9 @@ export default function Nav({ selectFindTicket, selectMyBooking }) {
     <div className="container mx-auto py-5 relative">
       <div className="flex justify-center items-center">
             <div>
-              <Logo />
+              <Link href={"/"}>
+                <Logo />
+              </Link>
             </div>
             <div className="flex justify-center items-center space-x-12 mx-auto">
               <div>
