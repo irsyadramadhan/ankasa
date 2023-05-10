@@ -1,34 +1,60 @@
 import Logo from "./Logo";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
+import { useState } from "react";
 
-export default function Nav() {
+export default function Nav({ selectFindTicket, selectMyBooking }) {
+
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const removeCookieHandler = () => {
     removeCookie('user');
-    router.replace("/");
+    router.push('/');
   };
+
+  const findTicketSelected = selectFindTicket ? `${selectFindTicket}` : "";
+  const myBookingSelected = selectMyBooking ? `${selectMyBooking}` : "";
+
+  const imageLoader = ({ src, width, quality }) => {
+    return `${src}?w=${width}&q${quality || 75}`;
+  };
+
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="flex justify-center items-center py-5 space-x-36">
-          <div>
-            <Logo />
-          </div>
-          <div className="flex justify-center items-center space-x-12">
+    <div className="container mx-auto py-5 relative">
+      <div className="flex justify-center items-center">
             <div>
-              <input type="text" className="bg-gray-200 border-none text-black rounded" placeholder="Where you want to go?" />
+              <Logo />
+            </div>
+            <div className="flex justify-center items-center space-x-12 mx-auto">
+              <div>
+                <input type="text" className="bg-gray-50 border-none text-black rounded" placeholder="Where you want to go?" />
+              </div>
+              <div className={`${findTicketSelected}`}>
+                <Link className="text-black font-semibold hover:text-blue-400" href="/findticket">Find Ticket</Link>
+              </div>
+              <div className={`${myBookingSelected}`}>
+                <Link className="text-black font-semibold hover:text-blue-400" href="/auth/login">My Booking</Link>
+              </div>
             </div>
             <div>
-              <a className="text-black font-bold" href="#">Find Ticket</a>
+              {cookies['user'] ?
+                <div>
+                  <div className="w-8 h-8 rounded-full overflow-hidden" onClick={() => {setOpen(!open)}}><Image className="w-full h-full object-cover" loader={imageLoader} src={`${cookies['user'].photo}`} alt="user photo" width={50} height={50} /></div>
+                  {open && (
+                    <div className="bg-gray-100 rounded shadow-md p-1 absolute right-1">
+                      <Link href={`profile/${cookies['user'].id}`}><p className="text-black text-sm hover:bg-blue-400 hover:text-white cursor-pointer">Profile</p></Link>
+                      <p className="text-red-500 text-sm hover:bg-red-500 hover:text-white cursor-pointer" onClick={removeCookieHandler}>Sign Out</p>
+                    </div>
+                  )}
+                </div>
+                :
+                <Link href={"/auth/register"}><div className="bg-blue-400 border border-blue-400 py-1 px-4 text-white rounded hover:bg-white hover:text-blue-400">Sign Up</div></Link>}
             </div>
-            <div>
-              <a className="text-black font-bold" href="#">My Booking</a>
-            </div>
-          </div>
-          <div>
-            {cookies['user'] ? <button className="bg-blue-500 py-2 px-8 text-white w-full" onClick={removeCookieHandler}>Sign Out</button> : <Link href={"/auth/register"}><button className="bg-blue-500 py-2 px-8 text-white w-full">Sign Up</button></Link>}
-          </div>
+      </div>
     </div>
   )
 }
