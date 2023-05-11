@@ -41,7 +41,7 @@ export default function FindTicket() {
               {data?.map((item, index) => (
                 <div key={index + 1}>
                   <div className="my-3 mx-auto bg-white border rounded p-4 shadow-lg h-28">
-                    <div className="flex items-center">
+                    <div className="flex items-center mb-4">
                       <div>
                         <Image loader={imageLoader} src={`${item.image}`} alt="airline" width={75} height={75} />
                       </div>
@@ -55,7 +55,7 @@ export default function FindTicket() {
                         <p className="text-gray-500 text-md">{item.flight_duration}</p>
                       </div>
                       <div>
-                        <p className="text-blue-500 text-md font-semibold">{`$ ${item.price}.00/pax`}</p>
+                        <p className="text-blue-500 text-md font-semibold">{`$ ${item.price},00/pax`}</p>
                       </div>
                       <div>
                         <Link href={`/findticket/${item.id}`}><div className="bg-blue-400 border border-blue-400 px-2 text-white rounded shadow-lg hover:bg-white hover:text-blue-400">Select</div></Link>

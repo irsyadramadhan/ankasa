@@ -39,7 +39,7 @@ export default function Nav({ selectFindTicket, selectMyBooking }) {
                 <Link className="text-black font-semibold hover:text-blue-400" href="/findticket">Find Ticket</Link>
               </div>
               <div className={`${myBookingSelected}`}>
-                <Link className="text-black font-semibold hover:text-blue-400" href="/auth/login">My Booking</Link>
+                {cookies['user'] ? <Link className="text-black font-semibold hover:text-blue-400" href={`/mybooking/${cookies['user'].id}`}>My Booking</Link> : <Link className="text-black font-semibold hover:text-blue-400" href={`/auth/login`}>My Booking</Link>}
               </div>
             </div>
             <div>

@@ -20,6 +20,9 @@ export default function TicketDetails() {
   const [title, setTitle] = useState('');
   const [nationality, setNationality] = useState('');
 
+  const [successMsg, setSuccessMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+
   const url = 'http://localhost:4000';
   const [data, setData] = useState(null);
   const [userData, setUserData] = useState(null);
@@ -49,8 +52,26 @@ export default function TicketDetails() {
     return `${src}?w=${width}&q${quality || 75}`;
   };
 
+  const ticket_id = ticketId;
+  const subtotal = data?.price;
+  const postData = {ticket_id, subtotal};
+
+  const postBooking = e => {
+    e.preventDefault();
+    const token = cookies['user'].token;
+    axios.post(`${url}/booking`, postData, {
+      headers: {"Authorization": `Bearer ${token}`}
+    }).then((res) => {
+      console.log('ok: ', res.data);
+      setSuccessMsg('Ticket added to My Booking');
+    }).catch((err) => {
+      console.log('error: ', err);
+      setErrorMsg('error');
+    });
+  };
+
   return (
-    <div className="bg-white relative pb-48">
+    <div className="bg-white min-h-screen relative pb-48">
         <Nav selectFindTicket="border-b-4 border-blue-400" />
         <div className="container mx-auto mb-12">
           <div className="bg-blue-400 h-20"></div>
@@ -91,29 +112,33 @@ export default function TicketDetails() {
                   <p className="text-black text-sm">{data?.meal ? 'Meal: Yes' : 'Meal: No'}</p>
                   <p className="text-black text-sm">{data?.wifi ? 'Wifi: Yes' : 'Wifi: No'}</p>
                 </div>
+                <div>
+                  <p className="text-gray-500 text-xs">Subtotal:</p>
+                  <p className="text-blue-400 text-lg font-semibold">{`$ ${data?.price},00`}</p>
+                </div>
               </div>
             </div>
           </div>
           <div className="bg-gray-50">
             <div className="rounded w-6/12 p-3">
               <div className="text-black font-bold mb-4">Passenger Detail</div>
-              <form>
-                <div className="mb-2 border-b-2 w-3/4">
-                  <label className="text-gray-500 text-sm">Title</label>
-                  <input type="text" className="w-full text-black rounded border-none text-sm shadow-md" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" required />
-                </div>
-                <div className="mb-2 border-b-2 w-3/4">
-                  <label className="text-gray-500 text-sm">Fullname</label>
-                  <input type="text" className="w-full text-black rounded border-none text-sm shadow-md" value={fullname} onChange={(e) => setFullname(e.target.value)} placeholder="Fullname" required />
-                </div>
-                <div className="mb-2 border-b-2 w-3/4">
-                  <label className="text-gray-500 text-sm">Nationality</label>
-                  <input type="text" className="w-full text-black rounded border-none text-sm shadow-md" value={nationality} onChange={(e) => setNationality(e.target.value)} placeholder="Nationality" required />
-                </div>
-                <div className="text-center my-4">
-                  <button className="bg-blue-400 border border-blue-400 py-1 px-4 text-white rounded shadow-md hover:bg-white hover:text-blue-400">Proceed to Payment</button>
-                </div>
-              </form>
+              <div className="mb-2 border-b-2 w-3/4">
+                <label className="text-gray-500 text-sm">Title</label>
+                <input type="text" className="w-full text-black rounded border-none text-sm shadow-md" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" required />
+              </div>
+              <div className="mb-2 border-b-2 w-3/4">
+                <label className="text-gray-500 text-sm">Fullname</label>
+                <input type="text" className="w-full text-black rounded border-none text-sm shadow-md" value={fullname} onChange={(e) => setFullname(e.target.value)} placeholder="Fullname" required />
+              </div>
+              <div className="mb-2 border-b-2 w-3/4">
+                <label className="text-gray-500 text-sm">Nationality</label>
+                <input type="text" className="w-full text-black rounded border-none text-sm shadow-md" value={nationality} onChange={(e) => setNationality(e.target.value)} placeholder="Nationality" required />
+              </div>
+              <div className="text-center my-4">
+                <button className="bg-blue-400 border border-blue-400 py-1 px-4 text-white rounded shadow-md hover:bg-white hover:text-blue-400" onClick={postBooking}>Book Ticket</button>
+              </div>
+              {successMsg && (<div className="text-center mt-2"><p className="text-green-500 text-sm">{successMsg}</p></div>)}
+              {errorMsg && (<div className="text-center mt-2"><p className="text-red-500 text-sm">{errorMsg}</p></div>)}
             </div>
           </div>
         </div>
