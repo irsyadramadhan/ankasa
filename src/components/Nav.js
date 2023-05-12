@@ -4,14 +4,17 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 import { useState } from "react";
+import { deleteCookie } from "cookies-next";
 
 export default function Nav({ selectFindTicket, selectMyBooking }) {
 
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const removeCookieHandler = () => {
-    removeCookie('user');
-    router.push('/');
+    deleteCookie('user', {
+      path : '/',
+    });
+    router.push('/auth/login');
   };
 
   const findTicketSelected = selectFindTicket ? `${selectFindTicket}` : "";
@@ -48,7 +51,7 @@ export default function Nav({ selectFindTicket, selectMyBooking }) {
                   <div className="w-8 h-8 rounded-full overflow-hidden" onClick={() => {setOpen(!open)}}><Image className="w-full h-full object-cover" loader={imageLoader} src={`${cookies['user'].photo}`} alt="user photo" width={50} height={50} /></div>
                   {open && (
                     <div className="bg-gray-100 rounded shadow-md p-1 absolute right-1">
-                      <Link href={`profile/${cookies['user'].id}`}><p className="text-black text-sm hover:bg-blue-400 hover:text-white cursor-pointer">Profile</p></Link>
+                      <Link href={`/profile/${cookies['user'].id}`}><p className="text-black text-sm hover:bg-blue-400 hover:text-white cursor-pointer">Profile</p></Link>
                       <p className="text-red-500 text-sm hover:bg-red-500 hover:text-white cursor-pointer" onClick={removeCookieHandler}>Sign Out</p>
                     </div>
                   )}

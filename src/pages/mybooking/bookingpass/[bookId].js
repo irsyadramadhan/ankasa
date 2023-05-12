@@ -37,33 +37,49 @@ export default function BookingPass() {
         <div className="container mx-auto h-full">
             <Nav />
             <div className="bg-blue-400 p-3 h-3/4">
-                <div className="bg-white rounded-lg mx-auto p-6 w-3/4 h-full">
-                    <div><p className="text-black text-2xl font-bold mb-4">Booking Pass</p></div>
+                <div className="bg-white mx-auto w-3/4 h-full">
+                    <div><p className="text-black text-2xl font-semibold mb-4 ml-2">Booking Pass</p></div>
                     <div className="border rounded-lg w-3/4 h-3/4 p-2 mx-auto flex">
-                        <div className="w-8/12 flex">
-                            <div>
-                                <div>
+                        <div className="w-3/4">
+                            <div className="flex">
+                                <div className="mx-auto mt-6">
                                     <Image loader={imageLoader} src={`${data?.image}`} alt="airline" width={75} height={75} />
                                 </div>
-                                <div className="mt-6">
-                                    <p className="text-gray-700 text-xs">Code</p>
-                                    <p className="text-black text-md font-semibold">A-221</p>
-                                    <p className="text-gray-700 text-xs">Class</p>
-                                    <p className="text-black text-md font-semibold">{data?.flight_class}</p>
-                                    <p className="text-gray-700 text-xs">Terminal</p>
-                                    <p className="text-black text-md font-semibold">A</p>
-                                    <p className="text-gray-700 text-xs">Gate</p>
-                                    <p className="text-black text-md font-semibold">221</p>
-                                    <p className="text-gray-700 text-xs">Departure</p>
-                                    <p className="text-black text-md font-semibold">Thursday, 11 May 2023</p>
+                                <div className="mx-auto mt-6">
+                                    <p className="text-black text-3xl font-semibold">{`${data?.origin_code} - ${data?.destination_code}`}</p>
                                 </div>
                             </div>
-                            <div className="ml-5">
-                                <p className="text-black text-xl font-semibold">{`${data?.origin_code} - ${data?.destination_code}`}</p>
+                            <div className="flex">
+                                <div className="mx-12 mt-6">
+                                    <div className="mb-4">
+                                        <p className="text-gray-700 text-xs">Code</p>
+                                        <p className="text-black text-md font-semibold">3A-10110523</p>
+                                    </div>
+                                    <div className="mb-4">
+                                        <p className="text-gray-700 text-xs">Terminal</p>
+                                        <p className="text-black text-md font-semibold">3A</p>
+                                    </div>
+                                </div>
+                                <div className="mx-12 mt-6">
+                                    <div className="mb-4">
+                                        <p className="text-gray-700 text-xs">Class</p>
+                                        <p className="text-black text-md font-semibold">{data?.flight_class}</p>
+                                    </div>
+                                    <div className="mb-4">
+                                        <p className="text-gray-700 text-xs">Gate</p>
+                                        <p className="text-black text-md font-semibold">10</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="ml-12">
+                                <p className="text-gray-700 text-xs">Departure</p>
+                                <p className="text-black text-md font-semibold">Thursday, 11 May 2023</p>
                             </div>
                         </div>
-                        <div className="w-4/12 border-l border-dashed">
-                            <Image className="ml-20" src="/barcode.png" alt="barcode" width={100} height={150} />
+                        <div className="w-1/4 border-l border-dashed">
+                            <div className="w-full h-full pt-6 pl-9">
+                                <Image src="/barcode.png" alt="barcode" width={100} height={150} />
+                            </div>
                         </div>
                     </div>
                 </div>

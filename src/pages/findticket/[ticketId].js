@@ -134,7 +134,7 @@ export default function TicketDetails() {
                 <label className="text-gray-500 text-sm">Nationality</label>
                 <input type="text" className="w-full text-black rounded border-none text-sm shadow-md" value={nationality} onChange={(e) => setNationality(e.target.value)} placeholder="Nationality" required />
               </div>
-              <div className="text-center my-4">
+              <div className="w-3/4 text-right mt-6 mb-2">
                 <button className="bg-blue-400 border border-blue-400 py-1 px-4 text-white rounded shadow-md hover:bg-white hover:text-blue-400" onClick={postBooking}>Book Ticket</button>
               </div>
               {successMsg && (<div className="text-center mt-2"><p className="text-green-500 text-sm">{successMsg}</p></div>)}

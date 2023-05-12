@@ -48,7 +48,7 @@ export default function MyBooking() {
   return (
     <div className="bg-white min-h-screen relative pb-48">
         <Nav selectMyBooking="border-b-4 border-blue-500" />
-        <div className="container mx-auto">
+        <div className="container mx-auto mb-8">
         <div className="flex bg-gray-50">
             <div className="w-4/12 border rounded p-5">
                 <div className="w-32 h-32 rounded-full overflow-hidden mx-auto">
@@ -77,7 +77,7 @@ export default function MyBooking() {
                         <p className="text-gray-500 text-md">{item.name}</p>
                       </div>
                       <div className="w-1/4 mr-12 text-center">
-                        {item.paid ? (<p className="bg-green-500 text-xs font-semibold py-1 rounded-lg">Eticket Issued</p>) : (<p className="bg-amber-500 text-xs font-semibold py-1 rounded">Waiting for Payment</p>)}
+                        {item.paid ? (<p className="bg-green-500 text-xs font-semibold py-1 rounded">Eticket Issued</p>) : (<p className="bg-amber-500 text-xs font-semibold py-1 rounded">Waiting for Payment</p>)}
                       </div>
                       <div className="w1/4">
                         {item.paid ? (<Link href={`/mybooking/bookingpass/${item.id}`}><button className="bg-blue-400 border border-blue-400 px-6 py-1 text-white text-xs rounded shadow-lg hover:bg-white hover:text-blue-400">Show Pass</button></Link>) : (<Link href={`/mybooking/proceedpayment/${item.id}`}><button className="bg-blue-400 border border-blue-400 px-6 py-1 text-white text-xs rounded shadow-lg hover:bg-white hover:text-blue-400">Pay</button></Link>)}
