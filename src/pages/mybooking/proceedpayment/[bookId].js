@@ -39,20 +39,21 @@ export default function ProceedPayment() {
   const updatePayment = e => {
     e.preventDefault();
     const token = cookies['user'].token;
-    console.log(token);
-    axios.put(`${url}/booking/${bookId}`, {
+    axios.put(`${url}/booking/${bookId}`, {}, {
       headers: {"Authorization": `Bearer ${token}`}
     }).then((res) => {
       console.log('success :', res.data);
+      router.push(`/mybooking/${cookies['user'].id}`);
     }).catch((err) => {
       console.log('error: ', err.response.data);
+      setErrorMsg('payment error')
     })
   }
 
   return (
     <div className="bg-white h-screen relative pb-48">
         <div className="container mx-auto h-full">
-            <Nav />
+            <Nav selectMyBooking="border-b-4 border-blue-500" />
             <div className="bg-blue-400 p-3 h-3/4">
                 <div className="bg-white mx-auto p-6 w-3/4 h-full flex">
                     <div className="w-2/4 h-full border">
@@ -105,6 +106,7 @@ export default function ProceedPayment() {
                       <div className="p-3 w-full text-right">
                         <button className="bg-blue-400 border border-blue-400 py-1 px-4 text-white rounded hover:bg-white hover:text-blue-400" onClick={updatePayment}>Checkout</button>
                       </div>
+                      {errorMsg && (<div className="text-center mt-2"><p className="text-red-500 text-sm">{errorMsg}</p></div>)}
                     </div>
                 </div>
             </div>

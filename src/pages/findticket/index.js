@@ -26,7 +26,7 @@ export default function FindTicket() {
   };
 
   return (
-    <div className="bg-white relative pb-48">
+    <div className="bg-white relative pb-48 min-h-screen">
         <Nav selectFindTicket="border-b-4 border-blue-400" />
         <div className="container mx-auto">
           <div className="bg-blue-400 h-20 p-6">

@@ -35,7 +35,7 @@ export default function BookingPass() {
     return (
     <div className="bg-white h-screen relative pb-48">
         <div className="container mx-auto h-full">
-            <Nav />
+            <Nav selectMyBooking="border-b-4 border-blue-500" />
             <div className="bg-blue-400 p-3 h-3/4">
                 <div className="bg-white mx-auto w-3/4 h-full">
                     <div><p className="text-black text-2xl font-semibold mb-4 ml-2">Booking Pass</p></div>

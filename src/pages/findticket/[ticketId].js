@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import Link from "next/link";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
 
@@ -20,7 +19,6 @@ export default function TicketDetails() {
   const [title, setTitle] = useState('');
   const [nationality, setNationality] = useState('');
 
-  const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
   const url = 'http://localhost:4000';
@@ -63,7 +61,7 @@ export default function TicketDetails() {
       headers: {"Authorization": `Bearer ${token}`}
     }).then((res) => {
       console.log('ok: ', res.data);
-      setSuccessMsg('Ticket added to My Booking');
+      router.push(`/mybooking/${cookies['user'].id}`);
     }).catch((err) => {
       console.log('error: ', err);
       setErrorMsg('error');
@@ -137,7 +135,6 @@ export default function TicketDetails() {
               <div className="w-3/4 text-right mt-6 mb-2">
                 <button className="bg-blue-400 border border-blue-400 py-1 px-4 text-white rounded shadow-md hover:bg-white hover:text-blue-400" onClick={postBooking}>Book Ticket</button>
               </div>
-              {successMsg && (<div className="text-center mt-2"><p className="text-green-500 text-sm">{successMsg}</p></div>)}
               {errorMsg && (<div className="text-center mt-2"><p className="text-red-500 text-sm">{errorMsg}</p></div>)}
             </div>
           </div>
