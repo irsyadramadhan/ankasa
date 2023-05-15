@@ -21,7 +21,7 @@ export default function TicketDetails() {
 
   const [errorMsg, setErrorMsg] = useState('');
 
-  const url = 'http://localhost:4000';
+  const url = process.env.NEXT_PUBLIC_API_KEY;
   const [data, setData] = useState(null);
   const [userData, setUserData] = useState(null);
 
@@ -34,7 +34,7 @@ export default function TicketDetails() {
       .catch((err) => {
         console.log('error: ', err.response.data.message);
       })
-  }, [ticketId]);
+  }, [ticketId, url]);
 
   useEffect(() => {
     axios.get(`${url}/users/${cookies['user']?.id}`)
@@ -44,7 +44,7 @@ export default function TicketDetails() {
         }).catch((err) => {
             console.log('not ok: ', err.response.data.message);
         });
-  }, [cookies]);
+  }, [cookies, url]);
 
   const imageLoader = ({ src, width, quality }) => {
     return `${src}?w=${width}&q${quality || 75}`;

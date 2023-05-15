@@ -20,7 +20,7 @@ export default function ProceedPayment() {
   const [paymethodCard, setPaymethodCard] = useState(false);
   const [paymethodPaypal, setPaymethodPaypal] = useState(false);
 
-  const url = 'http://localhost:4000';
+  const url = process.env.NEXT_PUBLIC_API_KEY;
 
   useEffect(() => {
     const token = cookies['user'].token;
@@ -34,7 +34,7 @@ export default function ProceedPayment() {
       .catch((err) => {
         console.log('not success: ', err);
       })
-  }, [bookId, cookies]);
+  }, [bookId, cookies, url]);
 
   const updatePayment = e => {
     e.preventDefault();

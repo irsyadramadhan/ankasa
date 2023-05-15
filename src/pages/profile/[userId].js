@@ -22,7 +22,7 @@ export default function Profile() {
   const [errorMsg, setErrorMsg] = useState('');
 
   const [userData, setUserData] = useState(null);
-  const url = 'http://localhost:4000';
+  const url = process.env.NEXT_PUBLIC_API_KEY;
 
   const formData = {email, phone, fullname, city, country};
 
@@ -48,7 +48,7 @@ export default function Profile() {
         }).catch((err) => {
             console.log('not ok: ', err.response.data.message);
         });
-  }, [userId]);
+  }, [userId, url]);
 
   const imageLoader = ({ src, width, quality }) => {
     return `${src}?w=${width}&q${quality || 75}`;

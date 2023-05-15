@@ -12,7 +12,7 @@ export default function BookingPass() {
     const {bookId} = router.query;
     const [cookies, setCookie, removeCookie] = useCookies(['user']);
     const [data, setData] = useState(null);
-    const url = 'http://localhost:4000';
+    const url = process.env.NEXT_PUBLIC_API_KEY;
 
     useEffect(() => {
         const token = cookies['user'].token;
@@ -26,7 +26,7 @@ export default function BookingPass() {
           .catch((err) => {
             console.log('error: ', err.response.data.message);
           })
-      }, [cookies, bookId]);
+      }, [cookies, bookId, url]);
 
       const imageLoader = ({ src, width, quality }) => {
         return `${src}?w=${width}&q${quality || 75}`;

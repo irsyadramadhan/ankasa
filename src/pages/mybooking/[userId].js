@@ -15,7 +15,7 @@ export default function MyBooking() {
 
   const [userData, setUserData] = useState(null);
   const [data, setData] = useState([]);
-  const url = 'http://localhost:4000';
+  const url = process.env.NEXT_PUBLIC_API_KEY;
 
   useEffect(() => {
     axios.get(`${url}/users/${userId}`)
@@ -25,7 +25,7 @@ export default function MyBooking() {
         }).catch((err) => {
             console.log('not ok: ', err.response.data.message);
         });
-  }, [userId]);
+  }, [userId, url]);
 
   useEffect(() => {
     const token = cookies['user'].token;
@@ -39,7 +39,7 @@ export default function MyBooking() {
       .catch((err) => {
         console.log('error: ', err.response.data.message);
       })
-  }, [cookies]);
+  }, [cookies, url]);
 
   const imageLoader = ({ src, width, quality }) => {
     return `${src}?w=${width}&q${quality || 75}`;

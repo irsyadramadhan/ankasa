@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function FindTicket() {
 
-  const url = 'http://localhost:4000';
+  const url = process.env.NEXT_PUBLIC_API_KEY;
   const [data, setData] = useState([]);
 
   // filter
@@ -40,7 +40,7 @@ export default function FindTicket() {
       .catch((err) => {
         console.log('error: ', err.response.data.message);
       })
-  }, []);
+  }, [url]);
 
   const imageLoader = ({ src, width, quality }) => {
     return `${src}?w=${width}&q${quality || 75}`;

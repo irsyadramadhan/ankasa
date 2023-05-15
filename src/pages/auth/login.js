@@ -15,7 +15,7 @@ export default function Login() {
 
     const formData = { email, password };
 
-    const url = 'http://localhost:4000';
+    const url = process.env.NEXT_PUBLIC_API_KEY;
 
     const postData = e => {
         e.preventDefault();
