@@ -6,7 +6,12 @@
 ## Table of Contents
 
 1. [About the Project](#about-the-project)
-2. 
+2. [Getting Started](#getting-started)
+3. [Screenshots](#screenshots)
+4. [Contribute](#contribute)
+5. [Related Project](#related-project)
+6. [Developers](#developers)
+7. [License](#license)
 
 ## About the Project
 
