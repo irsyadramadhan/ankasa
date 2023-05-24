@@ -1,57 +1,31 @@
-# Ankasa
+<div align="center">
+  <img width="100" height="100" src="https://res.cloudinary.com/dlv8ulgc0/image/upload/v1684899455/Logo/LogoAnkasaReadme_yxdogc.png"/>
+  <p>Ankasa</p>
+</div>
 
 ## Table of Contents
 
 1. [About the Project](#about-the-project)
-2. [Tech Stack](#tech-stack)
-3. [Packages](#packages)
-4. [Features](#features)
-5. [Env Variables](#env-variables)
-6. [App Link](#app-link)
-7. [Run in Local Machine](#run-in-local-machine)
-8. [Screenshots](#screenshots)
+2. 
 
 ## About the Project
 
 Ankasa is a web-based flight ticket booking application, where users can search for destinations, filter flight facilities, choose tickets, make bookings, and perform payment (update payment status).
 
-## Tech Stack
+### Tech Stack
 
-- Node JS
-- Express JS
-- PostgreSQL
-- Next JS
+- [Node JS](https://nodejs.org/en)
+- [Express JS](https://expressjs.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Next JS](https://nextjs.org/)
 
-## Packages
-
-- tailwindcss/forms
-- autoprefixer
-- axios
-- cookies-next
-- eslint
-- eslint-config-next
-- next
-- postcss
-- react
-- react-cookie
-- react-dom
-- tailwindcss
-
-## Features
-
-- CRUD
-- Authentication / User Login
-- Authorization
-
-## Env Variables
-
-- NEXT_PUBLIC_API_KEY
-
-## App Link
+### Demo
 
 - https://ankasa-eight.vercel.app/
 
-## Run in Local Machine
+## Getting Started
+
+### Installation
 
 1. Clone repository
 
@@ -71,7 +45,13 @@ cd ankasa
 npm install
 ```
 
-4. Start app in development server
+4. Add environment variables
+
+```
+NEXT_PUBLIC_API_KEY=https://enthusiastic-pig-top-hat.cyclic.app
+```
+
+5. Start app in development server
 
 ```
 npm run dev
@@ -98,3 +78,38 @@ npm run dev
 | Booking Pass | Profile |
 | ----------- | ----------- |
 | ![bookingpass](https://github.com/irsyadramadhan/ankasa/blob/main/src/screenshots/booking-pass.png) | ![profile](https://github.com/irsyadramadhan/ankasa/blob/main/src/screenshots/profile.png) |
+
+## Contribute
+
+1. Fork this project
+2. Create new branch
+
+```
+git checkout -b feature/NewFeature
+```
+
+3. Commit changes
+
+```
+git commit -m "Add some NewFeature"
+```
+
+4. Push to origin
+
+```
+git push origin feature/NewFeature
+```
+
+5. Open pull request
+
+## Related Project
+
+- [ankasa-backend](https://github.com/irsyadramadhan/ankasa-backend)
+
+## Developers
+
+- [Irsyad Ramadhan](https://github.com/irsyadramadhan)
+
+## License
+
+Distributed under the [MIT](/LICENSE) License.
